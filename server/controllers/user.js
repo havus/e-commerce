@@ -29,7 +29,7 @@ class UserController {
     let {email, password} = req.body;
     if (!password || !email) {
       next({
-        msg: 'wrong username / email!',
+        msg: 'Wrong username / password',
       })
     } else {
       User.findOne({ email })
@@ -42,12 +42,12 @@ class UserController {
             res.status(200).json({ token: jwtHash(obj) });
           } else {
             next({
-              msg: 'wrong username / email!'
+              msg: 'Wrong username / password'
             })
           }
         } else {
           next({
-            msg: 'wrong username / email!'
+            msg: 'Wrong username / password'
           })
         }
       })

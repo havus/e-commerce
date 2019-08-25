@@ -35,8 +35,14 @@ const authentication = require('../middleware/authentication');
 router.use(authentication);
 router.get('/', Product.findAll);
 router.get('/:id', Product.findOne);
-router.post('/', parser.single("image"), Product.create);
-router.put('/:id', Product.update);
-router.delete('/:id', Product.delete);
+router.post('/', authorization, (req, res, next) => {
+  if (!req.file) {
+    next({ msg: 'image required!' });
+  } else {
+    next();
+  }
+}, parser.single("image"), Product.create);
+router.put('/:id', authorization, Product.update);
+router.delete('/:id', authorization, Product.delete);
 
 module.exports = router;
