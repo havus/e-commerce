@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: null,
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'http://35.240.196.32',
     products: [],
     carts: [],
     toogleStatus: false,
